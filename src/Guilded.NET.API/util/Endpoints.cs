@@ -1,0 +1,33 @@
+using RestSharp;
+
+namespace Guilded.NET {
+    /// <summary>
+    /// Represents endpoint in Guilded API.
+    /// </summary>
+    public class Endpoint {
+        public static readonly Endpoint LOGIN = new Endpoint("login", Method.POST);
+        public static readonly Endpoint LOGOUT = new Endpoint("logout", Method.POST);
+        public static readonly Endpoint PING = new Endpoint("ping", Method.POST);
+        public static readonly Endpoint ME = new Endpoint("me", Method.GET);
+        /// <summary>
+        /// Path to the Rest Endpoint.
+        /// </summary>
+        /// <value>Endpoint Path</value>
+        public string Path {
+            get; set;
+        }
+        /// <summary>
+        /// Method of the Endpoint(GET, POST, ...).
+        /// </summary>
+        /// <value>EndPointMethod</value>
+        public Method EndpointMethod {
+            get; set;
+        }
+        /// <param name="path">Path of the Rest Endpoint</param>
+        /// <param name="method">Method of the Rest Endpoint</param>
+        public Endpoint(string path, Method method) {
+            Path = path;
+            EndpointMethod = method;
+        }
+    }
+}
