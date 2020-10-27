@@ -2,12 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>0.0.1.2</Version>
+    <Product>Guilded.NET.Objects</Product>
+    <id>Guilded.NET.Objects</id>
+    <PackageId>Guilded.NET.Objects</PackageId>
+    <Authors>IdkGoodName</Authors>
+    <Description>Events and objects for Guilded.NET</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
-    <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
 
 </Project>

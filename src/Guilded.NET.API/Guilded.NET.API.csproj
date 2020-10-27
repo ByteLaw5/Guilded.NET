@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>0.0.1.2</Version>
+    <Product>Guilded.NET.API</Product>
+    <id>Guilded.NET.API</id>
+    <PackageId>Guilded.NET.API</PackageId>
+    <Authors>IdkGoodName</Authors>
+    <Description>API helpers for Guilded.NET</Description>
   </PropertyGroup>
 
   <ItemGroup>

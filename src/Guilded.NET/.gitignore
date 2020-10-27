@@ -4,3 +4,7 @@ bin/*
 obj/*
 bin/*.*
 obj/*.*
+lib
+lib/*
+lib/*.dll
+*.nupkg
