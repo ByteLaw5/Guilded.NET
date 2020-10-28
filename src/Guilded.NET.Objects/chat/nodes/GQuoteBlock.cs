@@ -23,5 +23,10 @@ namespace Guilded.NET.Objects.Chat {
                 // Generate list of 1 text object with given leaves
                 Nodes = objs.Select(x => new GQuoteBlockLine(x)).ToList()
             };
+        /// <summary>
+        /// Turns quote block to string.
+        /// </summary>
+        /// <returns>Quote block as a string</returns>
+        public override string ToString() => string.Concat(Nodes);
     }
 }

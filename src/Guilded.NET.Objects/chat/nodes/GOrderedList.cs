@@ -23,5 +23,16 @@ namespace Guilded.NET.Objects.Chat {
                 // Generate list of 1 text object with given leaves
                 Nodes = objs.Select(x => new GListItem(x)).ToList()
             };
+        /// <summary>
+        /// Turns list to string.
+        /// </summary>
+        /// <returns>List as a string</returns>
+        public override string ToString() => string.Join('\n', Nodes.Select((x, i) => {
+            // Start of list items
+            string start = $"{i}. ";
+            string startspace = string.Concat(Enumerable.Repeat(" ", start.Length));
+            // Join it all together
+            return $"{start}{string.Join("\n" + startspace, x.ToString().Split('\n'))}\n";
+        }));
     }
 }

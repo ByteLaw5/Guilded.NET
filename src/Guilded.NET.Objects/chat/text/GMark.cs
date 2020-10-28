@@ -7,6 +7,14 @@ namespace Guilded.NET.Objects.Chat {
     /// Represents markdown marks.
     /// </summary>
     public class GMark: GBaseObject<GMark>, IMessageObject {
+        internal static Dictionary<GMarkType, string> MarkSymbols = new Dictionary<GMarkType, string>() {
+            { GMarkType.Bold, "**" },
+            { GMarkType.InlineCode, "`" },
+            { GMarkType.Italic, "*" },
+            { GMarkType.Spoiler, "||" },
+            { GMarkType.Strikethrough, "~~" },
+            { GMarkType.Underline, "__" }
+        };
         /// <summary>
         /// Object of the mark.
         /// </summary>

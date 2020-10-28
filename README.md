@@ -1,6 +1,6 @@
 # Guilded.NET
 
-[![Version](https://img.shields.io/badge/Version-0.0.1-red?style=for-the-badge)](https://github.com/IdkGoodName/Guilded.NET) [![Version](https://img.shields.io/badge/Version-Alpha-red?style=for-the-badge)](https://github.com/IdkGoodName/Guilded.NET)
+[![Version](https://img.shields.io/badge/Version-0.0.2-red?style=for-the-badge)](https://github.com/IdkGoodName/Guilded.NET) [![Version](https://img.shields.io/badge/Version-Alpha-red?style=for-the-badge)](https://github.com/IdkGoodName/Guilded.NET)
 
 Guilded.NET is an API wrapper for [Guilded](https://guilded.gg). It's currently using undocumented and unsupported API, so there could be a lot of bugs. Please be aware of them.
 

@@ -41,5 +41,10 @@ namespace Guilded.NET.Objects.Chat {
             new GTextObj {
                 Leaves = leaves.ToList()
             };
+        /// <summary>
+        /// Turns text object to string.
+        /// </summary>
+        /// <returns>Text object as a string</returns>
+        public override string ToString() => string.Concat(Leaves);
     }
 }

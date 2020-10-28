@@ -183,5 +183,38 @@ namespace Guilded.NET.Objects.Teams {
         public DateTime? DeletedAt {
             get; set;
         }
+        /// <summary>
+        /// Turns channel to string.
+        /// </summary>
+        /// <returns>Channel as a string</returns>
+        public override string ToString() => $"Channel({Id})";
+        /// <summary>
+        /// Whether or not objects are equal.
+        /// </summary>
+        /// <param name="obj">Equals to</param>
+        /// <returns>If it's equal to other object</returns>
+        public override bool Equals(object obj) {
+            if(obj is GChannel ch) return ch.TeamId == TeamId && ch.Id == Id;
+            else return false;
+        }
+        /// <summary>
+        /// Whether or not channels are equal.
+        /// </summary>
+        /// <param name="ch0">First channel to be compared</param>
+        /// <param name="ch1">Second channel to be compared</param>
+        /// <returns>If it's equal to other object</returns>
+        public static bool operator ==(GChannel ch0, GChannel ch1) => ch0.TeamId == ch1.TeamId && ch0.Id == ch1.Id;
+        /// <summary>
+        /// Whether or not channels are not equal.
+        /// </summary>
+        /// <param name="ch0">First channel to be compared</param>
+        /// <param name="ch1">Second channel to be compared</param>
+        /// <returns>If it's not equal to other object</returns>
+        public static bool operator !=(GChannel ch0, GChannel ch1) => !(ch0 == ch1);
+        /// <summary>
+        /// Gets channel hashcode.
+        /// </summary>
+        /// <returns>HashCode</returns>
+        public override int GetHashCode() => (TeamId.GetHashCode() + Id.GetHashCode() + 2000) / 2;
     }
 }

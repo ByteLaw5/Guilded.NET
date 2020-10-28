@@ -95,5 +95,33 @@ namespace Guilded.NET.Objects.Teams {
         public uint? UserPriority {
             get; set;
         }
+        /// <summary>
+        /// Whether or not objects are equal.
+        /// </summary>
+        /// <param name="obj">Equals to</param>
+        /// <returns>If it's equal to other object</returns>
+        public override bool Equals(object obj) {
+            if(obj is GGroup gr) return gr.TeamId == TeamId && gr.Id == Id;
+            else return false;
+        }
+        /// <summary>
+        /// Whether or not category are equal.
+        /// </summary>
+        /// <param name="gr0">First group to be compared</param>
+        /// <param name="gr1">Second group to be compared</param>
+        /// <returns>If it's equal to other object</returns>
+        public static bool operator ==(GGroup gr0, GGroup gr1) => gr0.TeamId == gr1.TeamId && gr0.Id == gr1.Id;
+        /// <summary>
+        /// Whether or not category are not equal.
+        /// </summary>
+        /// <param name="gr0">First group to be compared</param>
+        /// <param name="gr1">Second group to be compared</param>
+        /// <returns>If it's equal to other object</returns>
+        public static bool operator !=(GGroup gr0, GGroup gr1) => !(gr0 == gr1);
+        /// <summary>
+        /// Gets group hashcode.
+        /// </summary>
+        /// <returns>HashCode</returns>
+        public override int GetHashCode() => (TeamId.GetHashCode() + Id.GetHashCode() + 3000) / 2;
     }
 }

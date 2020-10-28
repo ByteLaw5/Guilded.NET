@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>Guilded.NET.Objects</id>
-    <version>0.0.1.2</version>
+    <version>0.0.2.1</version>
     <title>Guilded.NET.Objects</title>
     <authors>IdkGoodName</authors>
     <owners>IdkGoodName</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/IdkGoodName/Guilded.NET</projectUrl>
-    <!-- <iconUrl>http://icon_url_here_or_delete_this_line/</iconUrl> -->
+    <iconUrl>https://raw.githubusercontent.com/IdkGoodName/Guilded.NET/master/assets/Icon.png</iconUrl>
     <description>Guilded API wrapper for .NET</description>
-    <releaseNotes>Fixed dependencies</releaseNotes>
+    <releaseNotes>Updates on objects, icon</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>wrapper,api,chat,guilded</tags>
     <dependencies>

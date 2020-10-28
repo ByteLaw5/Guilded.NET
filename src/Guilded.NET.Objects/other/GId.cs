@@ -6,7 +6,7 @@ namespace Guilded.NET.Objects {
         static int idlength = 8;
         internal static InvalidIdException IdException = new InvalidIdException("Could not parse the given short ID string.");
         internal static string AvailableChars = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm0123456789";
-        string _;
+        internal string _;
         internal GId(string id) => _ = id;
         /// <summary>
         /// Parse string as a short ID.
@@ -49,5 +49,31 @@ namespace Guilded.NET.Objects {
         /// </summary>
         /// <returns>Short ID string</returns>
         public override string ToString() => _;
+        /// <summary>
+        /// Gets ID hashcode.
+        /// </summary>
+        /// <returns>HashCode</returns>
+        public override int GetHashCode() => _.GetHashCode() * 2 - 1000;
+        /// <summary>
+        /// Checks if given object is equal to this ID.
+        /// </summary>
+        /// <param name="obj">Other object</param>
+        /// <returns>Boolean</returns>
+        public override bool Equals(object obj) {
+            if(obj is GId id) return id._ == _;
+            else return false;
+        }
+        /// <summary>
+        /// Checks if given ID is equal to this ID.
+        /// </summary>
+        /// <param name="obj">Other ID</param>
+        /// <returns>Boolean</returns>
+        public static bool operator ==(GId id0, GId id1) => id0._ == id1._;
+        /// <summary>
+        /// Checks if given ID is not equal to this ID.
+        /// </summary>
+        /// <param name="obj">Other ID</param>
+        /// <returns>Boolean</returns>
+        public static bool operator !=(GId id0, GId id1) => !(id0 == id1);
     }
 }

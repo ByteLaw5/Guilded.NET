@@ -12,5 +12,10 @@ namespace Guilded.NET.Objects.Chat {
         }
         /// <param name="objs">Text objects to create line from</param>
         public GQuoteBlockLine(params IMessageObject[] objs): this() => Nodes = objs.ToList();
+        /// <summary>
+        /// Turns quote block to string.
+        /// </summary>
+        /// <returns>Quote block as a string</returns>
+        public override string ToString() => $"> {string.Concat(Nodes)}\n";
     }
 }

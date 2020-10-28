@@ -14,18 +14,25 @@ namespace Guilded.NET.Objects.Chat {
         /// <summary>
         /// Generates paragraph node.
         /// </summary>
-        /// <param name="leaves">List of message leaves</param>
-        /// <returns>Paragraph node</returns>
-        public static GParagraphNode Generate(params GLeaf[] leaves) =>
-            new GParagraphNode {
+        /// <param name="content">Message content</param>
+        /// <returns>Markdown plain text node</returns>
+        public static GMarkDownText Generate(string content) =>
+            new GMarkDownText {
                 // Set data to nothing, because paragraphs don't need anything
                 Data = new Dictionary<string, object>(),
-                // Generate list of 1 text object with given leaves
+                // Generate list of 1 text object with 1 leaf
                 Nodes = new List<IMessageObject>() {
                     new GTextObj {
-                        Leaves = leaves.ToList()
+                        Leaves = new List<GLeaf>() {
+                            GLeaf.Generate(content)
+                        }
                     }
                 }
             };
+        /// <summary>
+        /// Turns quote block to string.
+        /// </summary>
+        /// <returns>Quote block as a string</returns>
+        public override string ToString() => string.Concat(Nodes);
     }
 }

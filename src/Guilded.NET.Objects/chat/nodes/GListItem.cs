@@ -12,5 +12,10 @@ namespace Guilded.NET.Objects.Chat {
         }
         /// <param name="objs">Text objects to create line from</param>
         public GListItem(params IMessageObject[] objs): this() => Nodes = objs.ToList();
+        /// <summary>
+        /// Turns list item to string.
+        /// </summary>
+        /// <returns>List item as a string</returns>
+        public override string ToString() => string.Concat(Nodes);
     }
 }

@@ -12,6 +12,28 @@ namespace Guilded.NET.Objects.Chat {
             Type = GNodeType.Paragraph;
         }
         /// <summary>
+        /// Gets all leaves in paragraph.
+        /// </summary>
+        /// <value>List of paragraph leaves</value>
+        [JsonIgnore]
+        public IEnumerable<GLeaf> Leaves {
+            get =>
+                // Get all text objects and link nodes, because others shouldn't be there
+                Nodes.Where(x => !(x is GTextObj) && !(x is GLinkNode)).Select(x =>
+                    x is GLinkNode xl
+                    // Get all leaves in link node
+                    ? xl.Nodes.Select(y =>
+                        y is GTextObj yt
+                        ? yt.Leaves
+                        : new List<GLeaf>()
+                    // Flatten the list
+                    ).SelectMany(x => x)
+                    // Else, get all text object leaves
+                    : ((GTextObj)x).Leaves 
+                // Flatten the enumerable
+                ).SelectMany(x => x);
+        }
+        /// <summary>
         /// Generates paragraph node.
         /// </summary>
         /// <param name="leaves">List of message leaves</param>
@@ -40,5 +62,10 @@ namespace Guilded.NET.Objects.Chat {
                 // Generate list of 1 text object with given leaves
                 Nodes = objs.Select(x => (IMessageObject)x).ToList()
             };
+        /// <summary>
+        /// Turns paragraph node to string.
+        /// </summary>
+        /// <returns>Paragraph as a string</returns>
+        public override string ToString() => string.Concat(Nodes) + '\n';
     }
 }

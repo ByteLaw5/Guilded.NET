@@ -13,6 +13,11 @@ namespace Guilded.NET.Objects.Chat {
             Type = GNodeType.Link;
         }
         /// <summary>
+        /// Turns link node to a string.
+        /// </summary>
+        /// <returns>Link node as a string</returns>
+        public override string ToString() => $"[{string.Concat(Nodes)}]({Data?["href"]})";
+        /// <summary>
         /// Generates link node.
         /// </summary>
         /// <param name="leaves">List of message leaves</param>

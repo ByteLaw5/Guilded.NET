@@ -10,6 +10,11 @@ namespace Guilded.NET.Objects.Chat {
             Type = GNodeType.Reaction;
         }
         /// <summary>
+        /// Turns emote to string.
+        /// </summary>
+        /// <returns>Emote as a string</returns>
+        public override string ToString() => "::"; // TODO: Fix
+        /// <summary>
         /// Generates emote node.
         /// </summary>
         /// <param name="id">ID of the emote</param>

@@ -30,5 +30,10 @@ namespace Guilded.NET.Objects.Chat {
         public IList<GNode> Nodes {
             get => Document.Nodes;
         }
+        /// <summary>
+        /// Turns a message content into a string.
+        /// </summary>
+        /// <returns>Content as a string</returns>
+        public override string ToString() => string.Concat(Nodes);
     }
 }

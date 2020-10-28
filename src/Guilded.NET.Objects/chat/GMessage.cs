@@ -72,5 +72,10 @@ namespace Guilded.NET.Objects.Chat {
                     }
                 }
             };
+        /// <summary>
+        /// Turns a message into a string.
+        /// </summary>
+        /// <returns>Message as a string</returns>
+        public override string ToString() => string.Concat(Nodes);
     }
 }

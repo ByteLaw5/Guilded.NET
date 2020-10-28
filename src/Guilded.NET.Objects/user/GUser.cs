@@ -105,5 +105,38 @@ namespace Guilded.NET.Objects {
         public DateTime JoinDate {
             get; set;
         }
+        /// <summary>
+        /// Turns user to string.
+        /// </summary>
+        /// <returns>User as a string</returns>
+        public override string ToString() => $"User({Id})";
+        /// <summary>
+        /// Whether or not objects are equal.
+        /// </summary>
+        /// <param name="obj">Equals to</param>
+        /// <returns>If it's equal to other object</returns>
+        public override bool Equals(object obj) {
+            if(obj is GUser user) return user.Id == Id;
+            else return false;
+        }
+        /// <summary>
+        /// Whether or not users are equal.
+        /// </summary>
+        /// <param name="us0">First user to be compared</param>
+        /// <param name="us1">Second user to be compared</param>
+        /// <returns>If it's equal to other object</returns>
+        public static bool operator ==(GUser us0, GUser us1) => us0.Id == us1.Id;
+        /// <summary>
+        /// Whether or not users are not equal.
+        /// </summary>
+        /// <param name="us0">First user to be compared</param>
+        /// <param name="us1">Second user to be compared</param>
+        /// <returns>If it's not equal to other object</returns>
+        public static bool operator !=(GUser us0, GUser us1) => !(us0 == us1);
+        /// <summary>
+        /// Gets user hashcode.
+        /// </summary>
+        /// <returns>HashCode</returns>
+        public override int GetHashCode() => Id.GetHashCode() + 570;
     }
 }

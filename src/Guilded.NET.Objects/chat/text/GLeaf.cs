@@ -33,6 +33,18 @@ namespace Guilded.NET.Objects.Chat {
             get; set;
         } = null;
         /// <summary>
+        /// Turns leaf to string.
+        /// </summary>
+        /// <returns>Leaf as a string</returns>
+        public override string ToString() {
+            // Gets all marks and turns them to their symbol representations
+            IEnumerable<string> marks = Marks.Select(x => GMark.MarkSymbols[x.Type]);
+            // Joins them
+            string marksym = string.Concat(marks);
+            // Returns content with mark symbols
+            return marksym + Text + marksym.Reverse();
+        }
+        /// <summary>
         /// Generates leaf from given text and marks.
         /// </summary>
         /// <param name="text">Text of the leaf</param>

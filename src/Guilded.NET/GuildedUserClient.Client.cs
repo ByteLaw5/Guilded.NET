@@ -98,8 +98,20 @@ namespace Guilded.NET {
             LoginCookies = executed.Cookies;
             // Executes base
             await base.BasicConnectAsync(LoginCookies);
-            // Gets user info from login response
-            CurrentUser = JObject.Parse(executed.Content)["user"].ToObject<GUser>(GuildedSerializer);
+            // Parse given object
+            JObject obj = JObject.Parse(executed.Content);
+            try {
+                // Turn it into current user
+                CurrentUser = obj["user"].ToObject<GUser>(GuildedSerializer);
+            } catch(Exception e) {
+                // Create new exception and throw it
+                GuildedException exception = new GuildedException(e);
+                exception.Code = obj["code"].Value<string>();
+                exception.ErrorMessage = obj["message"].Value<string>();
+                throw exception;
+            }
+            // Invokes login event
+            ConnectedEvent?.Invoke(this, EventArgs.Empty);
             return executed;
         }
         /// <summary>

@@ -216,5 +216,38 @@ namespace Guilded.NET.Objects.Teams {
         public IList<ulong> Roles {
             get; set;
         }
+        /// <summary>
+        /// Turns team to string.
+        /// </summary>
+        /// <returns>Team as a string</returns>
+        public override string ToString() => $"Team({Id})";
+        /// <summary>
+        /// Whether or not objects are equal.
+        /// </summary>
+        /// <param name="obj">Equals to</param>
+        /// <returns>If it's equal to other object</returns>
+        public override bool Equals(object obj) {
+            if(obj is GTeam team) return team.Id == Id;
+            else return false;
+        }
+        /// <summary>
+        /// Whether or not teams are equal.
+        /// </summary>
+        /// <param name="tm0">First team to be compared</param>
+        /// <param name="tm1">Second team to be compared</param>
+        /// <returns>If it's equal to other object</returns>
+        public static bool operator ==(GTeam tm0, GTeam tm1) => tm0.Id == tm1.Id;
+        /// <summary>
+        /// Whether or not teams are not equal.
+        /// </summary>
+        /// <param name="tm0">First team to be compared</param>
+        /// <param name="tm1">Second team to be compared</param>
+        /// <returns>If it's not equal to other object</returns>
+        public static bool operator !=(GTeam tm0, GTeam tm1) => !(tm0 == tm1);
+        /// <summary>
+        /// Gets team hashcode.
+        /// </summary>
+        /// <returns>HashCode</returns>
+        public override int GetHashCode() => Id.GetHashCode() + 300;
     }
 }

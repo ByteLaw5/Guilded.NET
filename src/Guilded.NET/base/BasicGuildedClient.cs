@@ -36,6 +36,7 @@ namespace Guilded.NET {
             add => heartbeatEvent += value;
             remove => heartbeatEvent -= value;
         }
+        event EventHandler<string> debugMessage;
         /// <summary>
         /// List of converters
         /// </summary>
@@ -70,8 +71,6 @@ namespace Guilded.NET {
             // Start
             await Websocket.Start();
             HeartbeatThread.Start();
-            // Invokes login event
-            ConnectedEvent?.Invoke(this, EventArgs.Empty);
         }
         /// <summary>
         /// Used for when Websocket receives message.

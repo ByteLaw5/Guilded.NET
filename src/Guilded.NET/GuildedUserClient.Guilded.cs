@@ -31,15 +31,11 @@ namespace Guilded.NET {
         /// <param name="message">Message</param>
         /// <returns>Async task</returns>
         public async Task<object> SendMessageAsync(Guid channel, GNewMessage message) {
-            // Serialize the JSON
-            string s = JsonConvert.SerializeObject(message, Converters);
-            // Get the endpoint of the given channel
-            Endpoint point = new Endpoint($"channels/{channel}/messages", Method.POST);
             // Creates addables
             List<IReqAddable> addables = LoginCookies.Select(x => (IReqAddable)new GCookie(x.Name, x.Value)).ToList();
-            addables.Add(new GJsonBody(s));
-            // Execute and return it
-            return await ExecuteRequest<object>(point, addables.ToArray());
+            addables.Add(new GJsonBody(JsonConvert.SerializeObject(message, Converters)));
+            // Execute it
+            return await ExecuteRequest<object>(new Endpoint($"channels/{channel}/messages", Method.POST), addables.ToArray());
         }
         /// <summary>
         /// Sends a message into the chat. Sync version of <see cref="SendMessageAsync"/>.
@@ -120,5 +116,22 @@ namespace Guilded.NET {
         /// <returns>Message</returns>
         public GMessage GetMessage(Guid channelId, Guid messageId) =>
             GetMessageAsync(channelId, messageId).GetAwaiter().GetResult();
+        /// <summary>
+        /// Changes the name of the user.
+        /// </summary>
+        /// <param name="name">New name</param>
+        /// <returns>Async task</returns>
+        public async Task ChangeNameAsync(string name) {
+            // Creates addables
+            List<IReqAddable> addables = LoginCookies.Select(x => (IReqAddable)new GCookie(x.Name, x.Value)).ToList();
+            addables.Add(new GJsonBody($"{{\"name\": \"{name}\"}}"));
+            // Executes it
+            await ExecuteRequest<object>(new Endpoint($"/users/{CurrentUser.Id}/profilev2", Method.POST), addables.ToArray());
+        }
+        /// <summary>
+        /// Changes the name of the user. Sync version of <see cref="ChangeNameAsync"/>.
+        /// </summary>
+        /// <param name="name">New name</param>
+        public void ChangeName(string name) => ChangeNameAsync(name).GetAwaiter().GetResult();
     }
 }

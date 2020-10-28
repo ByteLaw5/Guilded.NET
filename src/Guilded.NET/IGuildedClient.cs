@@ -104,5 +104,16 @@ namespace Guilded.NET {
         /// <param name="messageId">ID of the message</param>
         /// <returns>Message</returns>
         GMessage GetMessage(Guid channelId, Guid messageId);
+        /// <summary>
+        /// Changes the name of the user.
+        /// </summary>
+        /// <param name="name">New name</param>
+        /// <returns>Async task</returns>
+        Task ChangeNameAsync(string name);
+        /// <summary>
+        /// Changes the name of the user. Sync version of <see cref="ChangeNameAsync"/>.
+        /// </summary>
+        /// <param name="name">New name</param>
+        void ChangeName(string name);
     }
 }
