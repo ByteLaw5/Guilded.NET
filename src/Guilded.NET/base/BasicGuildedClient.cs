@@ -36,7 +36,6 @@ namespace Guilded.NET {
             add => heartbeatEvent += value;
             remove => heartbeatEvent -= value;
         }
-        event EventHandler<string> debugMessage;
         /// <summary>
         /// List of converters
         /// </summary>

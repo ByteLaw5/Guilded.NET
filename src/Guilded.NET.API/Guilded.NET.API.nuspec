@@ -2,16 +2,16 @@
 <package >
   <metadata>
     <id>Guilded.NET.API</id>
-    <version>0.0.2</version>
+    <version>0.0.2.2</version>
     <title>Guilded.NET.API</title>
     <authors>IdkGoodName</authors>
     <owners>IdkGoodName</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/IdkGoodName/Guilded.NET</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/IdkGoodName/Guilded.NET/master/assets/Icon.png</iconUrl>
+    <icon>Icon.png</icon>
     <description>API helpers for Guilded.NET.</description>
-    <releaseNotes>Only icon</releaseNotes>
+    <releaseNotes>I didn't build it... I am an idiot, sorry.</releaseNotes>
     <copyright>Copyright 2020</copyright>
     <tags>wrapper,api,chat,guilded</tags>
     <dependencies>
@@ -22,5 +22,6 @@
   <files>
     <file src="README.md" target=""/>
     <file src="readme.txt" target=""/>
+    <file src="Icon.png" target="" />
   </files>
 </package>
