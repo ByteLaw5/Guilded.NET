@@ -42,7 +42,7 @@ namespace Guilded.NET.Objects.Chat {
             // Joins them
             string marksym = string.Concat(marks);
             // Returns content with mark symbols
-            return marksym + Text + marksym.Reverse();
+            return string.Concat(marks) + Text + string.Concat(marks.Reverse());
         }
         /// <summary>
         /// Generates leaf from given text and marks.

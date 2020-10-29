@@ -28,10 +28,8 @@ namespace Guilded.NET.Objects.Chat {
         /// </summary>
         /// <returns>List as a string</returns>
         public override string ToString() => string.Join('\n', Nodes.Select((x, i) => {
-            // Start of list items
-            string start = $"- ";
             // Join it all together
-            return $"{start}{"\n" + string.Join("  ", x.ToString().Split('\n'))}";
+            return $"- {string.Join("\n  ", x.ToString().Split('\n'))}";
         }));
     }
 }
