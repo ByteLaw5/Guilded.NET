@@ -5,7 +5,7 @@ namespace Guilded.NET.Objects.Chat {
     /// <summary>
     /// Represents message node.
     /// </summary>
-    public class GNode: GBaseObject<GNode>, IMessageObject {
+    public class GNode: GBaseObject<GNode>, IMessageObject, IHasData<object> {
         /// <summary>
         /// Object of the node.
         /// </summary>

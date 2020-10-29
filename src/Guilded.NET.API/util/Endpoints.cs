@@ -7,7 +7,7 @@ namespace Guilded.NET {
     public class Endpoint {
         public static readonly Endpoint LOGIN = new Endpoint("login", Method.POST);
         public static readonly Endpoint LOGOUT = new Endpoint("logout", Method.POST);
-        public static readonly Endpoint PING = new Endpoint("ping", Method.POST);
+        public static readonly Endpoint PING = new Endpoint("users/me/ping", Method.POST);
         public static readonly Endpoint ME = new Endpoint("me", Method.GET);
         /// <summary>
         /// Path to the Rest Endpoint.
