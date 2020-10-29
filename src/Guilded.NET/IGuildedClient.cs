@@ -115,5 +115,16 @@ namespace Guilded.NET {
         /// </summary>
         /// <param name="name">New name</param>
         void ChangeName(string name);
+        /// <summary>
+        /// Clears all notifications in a specific channel.
+        /// </summary>
+        /// <param name="channelId">ID of the channel to clear notifications in</param>
+        /// <returns>Async task</returns>
+        Task ClearNotificationsAsync(Guid channelId);
+        /// <summary>
+        /// Clears all notifications in a specific channel. Sync version of <see cref="ClearNotificationsAsync"/>.
+        /// </summary>
+        /// <param name="channelId">ID of the channel to clear notifications in</param>
+        void ClearNotifications(Guid channelId);
     }
 }

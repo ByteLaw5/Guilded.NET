@@ -1,6 +1,6 @@
 using RestSharp;
 
-namespace Guilded.NET {
+namespace Guilded.NET.API {
     /// <summary>
     /// Represents endpoint in Guilded API.
     /// </summary>

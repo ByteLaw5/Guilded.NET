@@ -133,5 +133,32 @@ namespace Guilded.NET {
         /// </summary>
         /// <param name="name">New name</param>
         public void ChangeName(string name) => ChangeNameAsync(name).GetAwaiter().GetResult();
+        /// <summary>
+        /// Clears all notifications in a specific channel.
+        /// </summary>
+        /// <param name="channelId">ID of the channel to clear notifications in</param>
+        /// <returns>Async task</returns>
+        public async Task ClearNotificationsAsync(Guid channelId) =>
+            await ExecuteRequest<object>(new Endpoint($"/channels/{channelId}/seen", Method.POST));
+        /// <summary>
+        /// Clears all notifications in a specific channel. Sync version of <see cref="ClearNotificationsAsync"/>.
+        /// </summary>
+        /// <param name="channelId">ID of the channel to clear notifications in</param>
+        public void ClearNotifications(Guid channelId) =>
+            ClearNotificationsAsync(channelId).GetAwaiter().GetResult();
+        /// <summary>
+        /// Accepts an invite.
+        /// </summary>
+        /// <param name="id">ID of the invite to accept</param>
+        /// <returns>Async task</returns>
+        public async Task AcceptInviteAsync(GId id) =>
+            await ExecuteRequest<object>(new Endpoint($"/invites/{id}", Method.POST), new GJsonBody("{\"type\": \"consume\"}"));
+        /// <summary>
+        /// Accepts an invite.
+        /// </summary>
+        /// <param name="id">ID of the invite to accept</param>
+        public void AcceptInvite(GId id) =>
+            AcceptInviteAsync(id).GetAwaiter().GetResult();
+        
     }
 }

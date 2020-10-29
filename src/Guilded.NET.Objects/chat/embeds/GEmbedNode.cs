@@ -28,5 +28,25 @@ namespace Guilded.NET.Objects.Chat {
                 return null;
             }
         }
+        /// <summary>
+        /// Generates embed node from given embed data.
+        /// </summary>
+        /// <param name="embed">Embed data</param>
+        /// <returns>Embed node</returns>
+        public static GEmbedNode Generate(GEmbed embed) =>
+            new GEmbedNode {
+                Data = new Dictionary<string, object> {
+                    {
+                        "embeds", new List<GEmbed> {
+                            embed
+                        }
+                    }
+                }
+            };
+        /// <summary>
+        /// Turns embed to string.
+        /// </summary>
+        /// <returns>Embed as string</returns>
+        public override string ToString() => "[Embeds: ToString not supported]";
     }
 }

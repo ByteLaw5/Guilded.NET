@@ -142,7 +142,6 @@ namespace Guilded.NET.API {
             // Starts a heartbeat thread
             HeartbeatToken = new CancellationTokenSource();
             HeartbeatThread = new Thread(async (o) => await HeartbeatThreadMethod(HeartbeatToken.Token));
-            //SendHeartbeat("2");
             // Reconnection
             if(reconnection != null)
                 Websocket.ReconnectTimeout = TimeSpan.FromSeconds(reconnection.Value);
