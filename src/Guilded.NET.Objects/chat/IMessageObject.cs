@@ -7,7 +7,7 @@ namespace Guilded.NET.Objects.Chat {
         /// Object type.
         /// </summary>
         /// <value>Object type</value>
-        GMsgObject Object {
+        MsgObject Object {
             get; set;
         }
     }

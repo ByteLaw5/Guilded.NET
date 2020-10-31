@@ -13,11 +13,11 @@ namespace Guilded.NET {
     using Util;
     using Objects.Converters;
     public abstract class BasicGuildedClient: BaseGuildedClient {
-        event EventHandler<GSocketMessage> guildedWebsocketMessage;
+        event EventHandler<SocketMessage> guildedWebsocketMessage;
         /// <summary>
         /// Event when websocket receives a message.
         /// </summary>
-        protected event EventHandler<GSocketMessage> GuildedWebsocketMessage {
+        protected event EventHandler<SocketMessage> GuildedWebsocketMessage {
             add => guildedWebsocketMessage += value;
             remove => guildedWebsocketMessage -= value;
         }
@@ -90,12 +90,12 @@ namespace Guilded.NET {
                 if(JsonUtil.TryParse(trimmed, out array)) {
                     // Gets type and object from the array
                     if (array[0] is JValue value && array[1] is JObject obj)
-                        guildedWebsocketMessage?.Invoke(this, new GSocketEvent(num, obj, value.ToString()));
+                        guildedWebsocketMessage?.Invoke(this, new SocketEvent(num, obj, value.ToString()));
                 }
                 else if(JsonUtil.TryParse(trimmed, out jobj))
-                    guildedWebsocketMessage?.Invoke(this, new GObjectMessage(num, jobj));
+                    guildedWebsocketMessage?.Invoke(this, new ObjectMessage(num, jobj));
                 else if(string.IsNullOrEmpty(trimmed))
-                    guildedWebsocketMessage?.Invoke(this, new GSocketMessage(num));
+                    guildedWebsocketMessage?.Invoke(this, new SocketMessage(num));
             }
         }
         /// <summary>

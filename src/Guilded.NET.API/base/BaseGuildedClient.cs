@@ -16,6 +16,10 @@ namespace Guilded.NET.API {
         /// </summary>
         protected EventHandler ConnectedEvent, DisconnectedEvent;
         /// <summary>
+        /// Event when exception occurs.
+        /// </summary>
+        protected EventHandler<GuildedException> ErrorEvent;
+        /// <summary>
         /// Thread for heartbeats.
         /// </summary>
         /// <value>Thread</value>
@@ -81,6 +85,10 @@ namespace Guilded.NET.API {
             add => DisconnectedEvent += value;
             remove => DisconnectedEvent += value;
         }
+        public event EventHandler<GuildedException> Error {
+            add => ErrorEvent += value;
+            remove => ErrorEvent -= value;
+        }
         /// <param name="apiurl">URL of API</param>
         /// <exception cref="System.ArgumentNullException">When apiurl or socketurl are null</exception>
         /// <exception cref="System.UriFormatException">When apiurl or socketurl are invalid</exception>
@@ -106,6 +114,21 @@ namespace Guilded.NET.API {
                 addable.AddTo(req);
             // Execute and return the response
             return await Rest.ExecuteAsync<T>(req);
+        }
+        /// <summary>
+        /// Sends a request to Guilded's API with given arguments.
+        /// </summary>
+        /// <param name="endpoint">Guilded API endpoint</param>
+        /// <param name="args">Args to be given to that endpoint</param>
+        /// <returns>Request response</returns>
+        public async Task<IRestResponse<object>> ExecuteRequest(Endpoint endpoint, params IReqAddable[] addables) {
+            // Create new request
+            RestRequest req = new RestRequest(endpoint.Path, endpoint.EndpointMethod);
+            // Add parameters
+            foreach(var addable in addables)
+                addable.AddTo(req);
+            // Execute and return the response
+            return await Rest.ExecuteAsync<object>(req);
         }
         /// <summary>
         /// Sends a request to Guilded's API without arguments.

@@ -24,14 +24,14 @@ namespace Guilded.NET.Objects.Teams {
         /// Permissions of the roles in this channel.
         /// </summary>
         /// <value>Role Permissions</value>
-        Dictionary<uint, GChannelPermission> RolePermissions {
+        Dictionary<uint, ChannelPermission> RolePermissions {
             get; set;
         }
         /// <summary>
         /// Permissions of the users in this channel.
         /// </summary>
         /// <value>User Permissions</value>
-        Dictionary<uint, GUserPermission> UserPermissions {
+        Dictionary<uint, UserPermission> UserPermissions {
             get; set;
         }
         /// <summary>

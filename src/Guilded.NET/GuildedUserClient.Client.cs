@@ -13,19 +13,19 @@ namespace Guilded.NET {
     /// Logged-in user in Guilded.
     /// </summary>
     public partial class GuildedUserClient: BasicGuildedClient {
-        protected internal EventHandler<GMessageCreatedEvent> messageCreated;
+        protected internal EventHandler<MessageCreatedEvent> messageCreated;
         /// <summary>
         /// Event when message was posted into the channel.
         /// </summary>
-        public event EventHandler<GMessageCreatedEvent> MessageCreated {
+        public event EventHandler<MessageCreatedEvent> MessageCreated {
             add => messageCreated += value;
             remove => messageCreated -= value;
         }
-        protected internal EventHandler<GUserTypingEvent> userTyping;
+        protected internal EventHandler<UserTypingEvent> userTyping;
         /// <summary>
         /// Event when someone is typing into the channel.
         /// </summary>
-        public event EventHandler<GUserTypingEvent> UserTyping {
+        public event EventHandler<UserTypingEvent> UserTyping {
             add => userTyping += value;
             remove => userTyping -= value;
         }
@@ -53,7 +53,7 @@ namespace Guilded.NET {
             get; set;
         } = new List<RestResponseCookie>();
 #pragma warning restore 0618
-        public GUser CurrentUser {
+        public User CurrentUser {
             get; protected set;
         } = null;
         public GuildedUserClient(string email, string password): base() {
@@ -64,23 +64,23 @@ namespace Guilded.NET {
             // Events
             GuildedWebsocketMessage += (o, x) => {
                 // Check if it's socket event
-                if(x is GSocketEvent xe) {
+                if(x is SocketEvent xe) {
                     // Get the given data
                     JObject xeobj = xe.Object;
                     // Get the type of the event
                     switch(xe.MessageType) {
                         case "ChatMessageCreated":
-                            GMessageCreatedEvent msg = xeobj.ToObject(typeof(GMessageCreatedEvent), GuildedSerializer) as GMessageCreatedEvent;
+                            MessageCreatedEvent msg = xeobj.ToObject(typeof(MessageCreatedEvent), GuildedSerializer) as MessageCreatedEvent;
                             // Send it as message created event
                             messageCreated?.Invoke(this, msg);
                             break;
                         case "ChatChannelTyping":
                             // Send it as user typing event
-                            userTyping?.Invoke(this, xeobj.ToObject(typeof(GUserTypingEvent), GuildedSerializer) as GUserTypingEvent);
+                            userTyping?.Invoke(this, xeobj.ToObject(typeof(UserTypingEvent), GuildedSerializer) as UserTypingEvent);
                             break;
                     }
                 }
-                else if(x is GSocketMessage xm)
+                else if(x is SocketMessage xm)
                     // If it's a heartbeat response
                     if(xm.Number == 3) InvokeHeartbeatEvent(this, 3);
             };
@@ -93,7 +93,7 @@ namespace Guilded.NET {
             // Creates login details to send to Guilded
             var login = new { email = Email, password = Password };
             // Sends login details to Guilded
-            var executed = await ExecuteRequest<object>(Endpoint.LOGIN, new GJsonBody(login));
+            var executed = await ExecuteRequest<object>(Endpoint.LOGIN, new JsonBody(login));
             // Set login cookies
             LoginCookies = executed.Cookies;
             // Executes base
@@ -102,7 +102,7 @@ namespace Guilded.NET {
             JObject obj = JObject.Parse(executed.Content);
             try {
                 // Turn it into current user
-                CurrentUser = obj["user"].ToObject<GUser>(GuildedSerializer);
+                CurrentUser = obj["user"].ToObject<User>(GuildedSerializer);
             } catch(Exception e) {
                 // Create new exception and throw it
                 GuildedException exception = new GuildedException(e);

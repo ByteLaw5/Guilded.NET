@@ -34,6 +34,6 @@ namespace Guilded.NET.Objects.Converters {
         /// </summary>
         /// <param name="objectType">Type of the object</param>
         /// <returns>Can convert the type</returns>
-        public override bool CanConvert(Type objectType) => objectType == id;
+        public override bool CanConvert(Type objectType) => objectType == id || objectType == guid;
     }
 }

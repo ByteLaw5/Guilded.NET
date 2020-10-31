@@ -7,26 +7,27 @@ using System.Linq;
 namespace Guilded.NET.Objects.Converters {
     using Chat;
     public class NodeConverter: JsonConverter {
-        Type node = typeof(GNode);
+        Type node = typeof(Node);
         Type msgobj = typeof(IMessageObject);
-        Dictionary<string, Type> types = new Dictionary<string, Type>() {
-            { "paragraph", typeof(GParagraphNode) },
-            { "link", typeof(GLinkNode) },
-            //{ "text", typeof(GTextObj) },
-            { "block-quote-container", typeof(GQuoteBlock) },
-            { "block-quote-line", typeof(GQuoteBlockLine) },
-            { "markdown-plain-text", typeof(GMarkDownText) },
-            { "unordered-list", typeof(GUnorderedList) },
-            { "ordered-list", typeof(GOrderedList) },
-            { "list-item", typeof(GListItem) },
-            { "reaction", typeof(GEmoteNode) },
-            //{ "mark", typeof(GMark) },
-            //{ "leaf", typeof(GLeaf) }
+        Dictionary<string, Type> types = new Dictionary<string, Type> {
+            { "paragraph", typeof(ParagraphNode) },
+            { "link", typeof(LinkNode) },
+            //{ "text", typeof(TextObj) },
+            { "block-quote-container", typeof(QuoteBlock) },
+            { "block-quote-line", typeof(QuoteBlockLine) },
+            { "markdown-plain-text", typeof(MarkDownText) },
+            { "unordered-list", typeof(UnorderedList) },
+            { "ordered-list", typeof(OrderedList) },
+            { "list-item", typeof(ListItem) },
+            { "reaction", typeof(EmoteNode) },
+            { "webhookMessage", typeof(EmbedNode) }
+            //{ "mark", typeof(Mark) },
+            //{ "leaf", typeof(Leaf) }
         };
-        Dictionary<string, Type> objs = new Dictionary<string, Type>() {
-            { "text", typeof(GTextObj) },
-            { "mark", typeof(GMark) },
-            { "leaf", typeof(GLeaf) }
+        Dictionary<string, Type> objs = new Dictionary<string, Type> {
+            { "text", typeof(TextObj) },
+            { "mark", typeof(Mark) },
+            { "leaf", typeof(Leaf) }
         };
         /// <summary>
         /// Writes node to the JSON string.
@@ -49,7 +50,7 @@ namespace Guilded.NET.Objects.Converters {
             // JsonSerializer newer = new JsonSerializer();
             // foreach(JsonConverter converter in serializer.Converters)
             //     if(!(converter is NodeConverter)) newer.Converters.Add(converter);
-            // Convert JSON to GNode
+            // Convert JSON to Node
             string objparam = obj["object"].Value<string>();
             if(!objs.ContainsKey(objparam)) {
                 // Gets object type
@@ -57,7 +58,7 @@ namespace Guilded.NET.Objects.Converters {
                 object o = 
                     types.ContainsKey(objtype)
                     ? obj.ToObject(types[objtype], serializer)
-                    : obj.ToObject<GNode>(serializer);
+                    : obj.ToObject<Node>(serializer);
                 return o;
             } else return obj.ToObject(objs[objparam], serializer);
         }
