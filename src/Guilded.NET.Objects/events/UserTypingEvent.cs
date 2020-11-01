@@ -5,7 +5,7 @@ namespace Guilded.NET.Objects.Events {
     /// <summary>
     /// Event when message is posted in the chat.
     /// </summary>
-    public class UserTypingEvent: Event<MessageCreatedEvent> {
+    public class UserTypingEvent: Event<UserTypingEvent> {
         /// <summary>
         /// ID of the channel this message was posted in.
         /// </summary>
